@@ -10,14 +10,28 @@ const TextForm = (props) => {
 
   const ChangeUpperCase = () => {
     setText(text.toUpperCase());
+    props.showAlert("Converted to Uppercase!", "success");
   }
 
   const ChangeLowerCase = () => {
     setText(text.toLowerCase());
+    props.showAlert("Converted to Lowercase!", "success");
   }
 
   const ClearText = () => {
     setText("");
+    props.showAlert("Text Cleared!", "success");
+  }
+
+  const CopyText = () => {
+    navigator.clipboard.writeText(text);
+    props.showAlert("Copied to Clipboard!", "success");
+  }
+
+  const RemoveExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+    props.showAlert("Extra spaces removed!", "success");
   }
 
   return (
@@ -42,10 +56,12 @@ const TextForm = (props) => {
         <button className="btn btn-primary m-1" onClick={ChangeUpperCase}>Change to Upper Case</button>
         <button className="btn btn-primary m-1" onClick={ChangeLowerCase}>Change to Lower Case</button>
         <button className="btn btn-primary m-1" onClick={ClearText}>Clear Text</button>
+        <button className="btn btn-primary m-1" onClick={CopyText}>Copy Text</button>
+        <button className="btn btn-primary m-1" onClick={RemoveExtraSpaces}>Remove Extra Spaces</button>
       </div>
       <div className="container">
         <h2>Your Text Summary</h2>
-        <p><b>Total Words:</b> {text.split(" ").length}</p>
+        <p><b>Total Words:</b> {text.length < 1 ? 0 : text.split(" ").length}</p>
         <p><b>Total Characters:</b> {text.length}</p>
         <p><b>Total Time to read:</b> {0.008 * text.split(" ").length} Minutes</p>
         <h2>Preview</h2>

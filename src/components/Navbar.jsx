@@ -15,14 +15,7 @@ const Navbar = (props) => {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
-            {/* <li className="nav-item">
-              <a className="nav-link" href="/">{props.about}</a>
-            </li> */}
           </ul>
-          {/* <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success" type="submit">Search</button>
-          </form> */}
           <div className={`form-check form-switch text-${props.mode === "dark" ? "light" : "dark"}`}>
             <input className="form-check-input" type="checkbox" onClick={props.toggleMode} id="flexSwitchCheckDefault" />
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
@@ -34,7 +27,6 @@ const Navbar = (props) => {
 }
 
 export default Navbar;
-
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
