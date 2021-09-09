@@ -49,23 +49,23 @@ const TextForm = (props) => {
             id="myBox"
             rows={8}
             style={{
-              background: props.mode === "dark" ? "gray" : "white",
+              background: props.mode === "dark" ? "#113b6b" : "white",
               color: props.mode === "dark" ? "white" : "black"
             }} />
         </div>
-        <button className="btn btn-primary m-1" onClick={ChangeUpperCase}>Change to Upper Case</button>
-        <button className="btn btn-primary m-1" onClick={ChangeLowerCase}>Change to Lower Case</button>
-        <button className="btn btn-primary m-1" onClick={ClearText}>Clear Text</button>
-        <button className="btn btn-primary m-1" onClick={CopyText}>Copy Text</button>
-        <button className="btn btn-primary m-1" onClick={RemoveExtraSpaces}>Remove Extra Spaces</button>
+        <button disabled={text.length === 0} className="btn btn-primary m-1" onClick={ChangeUpperCase}>Change to Upper Case</button>
+        <button disabled={text.length === 0} className="btn btn-primary m-1" onClick={ChangeLowerCase}>Change to Lower Case</button>
+        <button disabled={text.length === 0} className="btn btn-primary m-1" onClick={ClearText}>Clear Text</button>
+        <button disabled={text.length === 0} className="btn btn-primary m-1" onClick={CopyText}>Copy Text</button>
+        <button disabled={text.length === 0} className="btn btn-primary m-1" onClick={RemoveExtraSpaces}>Remove Extra Spaces</button>
       </div>
       <div className="container">
         <h2>Your Text Summary</h2>
-        <p><b>Total Words:</b> {text.length < 1 ? 0 : text.split(" ").length}</p>
+        <p><b>Total Words:</b> {text.split(/\s+/).filter(val => val.length === 0 ? false : true).length}</p>
         <p><b>Total Characters:</b> {text.length}</p>
-        <p><b>Total Time to read:</b> {0.008 * text.split(" ").length} Minutes</p>
+        <p><b>Total Time to Read:</b> {0.008 * text.split(" ").filter(val => val.length === 0 ? false : true).length} Minutes</p>
         <h2>Preview</h2>
-        <p> {text.length === 0 ? "No text to display" : text}</p>
+        <p> {text.length === 0 ? "Nothing to preview!" : text}</p>
       </div>
     </div>
   )
